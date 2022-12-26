@@ -1,0 +1,130 @@
+.menu {
+  position: relative;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  left: 50%;
+  transform: translate(-50%);
+  padding-top: 10px;
+  background-color: rgba(0, 0, 0, 0.8);
+  height: 80px;
+}
+.menu .logo {
+  all: unset;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  cursor: pointer;
+  grid-gap: 10px;
+  margin-left: 20px;
+}
+.menu .logo p {
+  font-family: "BlackItalic";
+}
+.menu .logo :first-child {
+  color: white;
+}
+.menu .logo :nth-child(2) {
+  color: #54b435;
+}
+.menu .logo :nth-child(3) {
+  opacity: 0;
+  transition: 0.5s;
+}
+.menu .logo:hover :nth-child(3) {
+  opacity: 1;
+}
+.menu li {
+  all: unset;
+  margin-right: 20px;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  align-items: center;
+}
+.menu li .link {
+  all: unset;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  cursor: pointer;
+  grid-gap: 10px;
+}
+.menu li .link p {
+  color: white;
+  font-family: "Italic";
+}
+.menu li .search {
+  all: unset;
+  border: 1px solid white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 15px;
+  width: 250px;
+  height: 30px;
+  font-size: 20px;
+  padding-left: 10px;
+}
+.menu li .search input {
+  width: 80%;
+  border: none;
+  background-color: transparent;
+  border-radius: 15px;
+  font-size: 25px;
+  font-family: "Italic";
+  color: white;
+}
+.menu li .search :focus {
+  outline: none;
+}
+.menu li .focused_link {
+  all: unset;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  cursor: pointer;
+  grid-gap: 10px;
+}
+.menu li .focused_link p {
+  color: #54b435;
+  font-family: "Italic";
+}
+.menu li .focused_link :first-child {
+  color: #54b435;
+}
+@media screen and (max-width: 900px) {
+  .menu {
+    padding-left: unset;
+    padding-right: unset;
+  }
+  .menu .link p {
+    display: none;
+  }
+  .menu .focused_link p {
+    display: none;
+  }
+  .menu .logo {
+    width: 50px;
+  }
+}
+.menu li ul .link:hover p {
+  position: relative;
+  animation: textMoveMenu 0.5s;
+}
+@keyframes textMoveMenu {
+  0% {
+    left: 0;
+  }
+  50% {
+    left: 10px;
+  }
+  100% {
+    left: 0;
+  }
+}

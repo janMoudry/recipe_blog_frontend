@@ -1,0 +1,19 @@
+.no_existing_page {
+  font-size: 100px;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  flex-direction: column;
+  font-family: "Black";
+}
+.no_existing_page p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  grid-gap: 20px;
+  color: white;
+  text-shadow: 2px 2px 5px black;
+}
