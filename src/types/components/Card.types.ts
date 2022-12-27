@@ -19,3 +19,16 @@ export type mealTypes =
   | "drink"
   | "vegan"
   | "sea";
+
+export const mealTypesArray = [
+  "Kuřecí",
+  "Vepřové",
+  "Vegetariánské",
+  "Hovězí",
+  "pizza",
+  "Burger",
+  "Sladké",
+  "Ryby",
+  "Drinky",
+  "Mořské plody",
+];

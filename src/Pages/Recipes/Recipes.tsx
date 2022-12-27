@@ -1,6 +1,9 @@
+import { ChangeEvent, useState } from "react";
 import NavigationCard from "../../components/NavigationCard";
 import "../../styles/Pages/Recipes/Recipes.css";
 import { mealTypes } from "../../types/components/Card.types";
+
+type cardsArray = Array<{ title: string; mealType: mealTypes; icon: string }>;
 
 const Recipes = () => {
   const chicken = require("../../assets/chicken.gif");
@@ -14,7 +17,9 @@ const Recipes = () => {
   const sea = require("../../assets/shrimp.gif");
   const drink = require("../../assets/cocktail.gif");
 
-  const cards: Array<{ title: string; mealType: mealTypes; icon: string }> = [
+  const [inputedText, setInputedText] = useState<string>("");
+
+  const cards: cardsArray = [
     {
       title: "Kuřecí",
       mealType: "chicken",
@@ -67,11 +72,29 @@ const Recipes = () => {
     },
   ];
 
+  const filterCard = (): cardsArray => {
+    return cards.filter(({ title }) =>
+      title.toLowerCase().includes(inputedText.toLowerCase()),
+    );
+  };
+
+  const handleFilterChange = (e: ChangeEvent) => {
+    const timeout = setTimeout(() => {
+      //@ts-ignore
+      e.target.value ? setInputedText(e.target.value) : setInputedText("");
+
+      clearTimeout(timeout);
+    }, 500);
+  };
+
   return (
     <div className="recipes_container">
-      <span className="title">Kategorie</span>
+      <div className="recipes_title_container">
+        <span className="title">Kategorie</span>
+        <input onChange={handleFilterChange} placeholder="Kuřecí" />
+      </div>
       <div className="recipes_inner_container">
-        {cards.map(({ title, mealType, icon }) => (
+        {filterCard().map(({ title, mealType, icon }) => (
           <NavigationCard
             title={title}
             mealType={mealType}
@@ -79,6 +102,11 @@ const Recipes = () => {
             key={title}
           />
         ))}
+        {!filterCard().length && (
+          <h1 className="no_existing">
+            Žádné kategorie s tímhle názvem neexistují
+          </h1>
+        )}
       </div>
     </div>
   );

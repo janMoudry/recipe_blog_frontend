@@ -7,9 +7,26 @@
   flex-wrap: wrap;
   grid-gap: 20vh;
 
-  .title {
-    font-size: 60px;
-    font-family: "bold";
+  .recipes_title_container {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 15px;
+    justify-content: center;
+    align-items: center;
+
+    input {
+      width: 150%;
+      height: 50px;
+      background-color: transparent;
+      border: 5px solid green;
+      border-radius: 10px;
+      font-size: 25px;
+    }
+    .title {
+      font-size: 60px;
+      font-family: "Black";
+      color: green;
+    }
   }
 
   .recipes_inner_container {
@@ -21,5 +38,12 @@
     flex-direction: row;
 
     flex-wrap: wrap;
+  }
+
+  .no_existing {
+    text-align: center;
+    font-size: 5vw;
+    color: green;
+    font-family: "BoldItalic";
   }
 }
