@@ -1,7 +1,11 @@
 import "../../styles/components/Footer/Footer.css";
 
 const Footer = () => {
-  return <div className="footer_container"></div>;
+  return (
+    <footer className="footer_container">
+      <p>Tohle je footer</p>
+    </footer>
+  );
 };
 
 export default Footer;
