@@ -1,5 +1,7 @@
 import { useRef, useState } from "react";
 import { FaPlus, FaSave } from "react-icons/fa";
+import { useNavigate } from "react-router";
+import apiManager from "../../apiManager/apiManager";
 import Button from "../../components/Button";
 import "../../styles/Pages/CreateRecipe/CreateRecipe.css";
 import { mealTypesArray } from "../../types/components/Card.types";
@@ -14,6 +16,8 @@ const CreateRecipe = () => {
   const mainCategorySelectRef = useRef<HTMLSelectElement | null>(null);
   const secondaryCategorySelectRef = useRef<HTMLSelectElement | null>(null);
   const recipeTextareaRef = useRef<HTMLTextAreaElement | null>(null);
+
+  const navigateTo = useNavigate();
 
   const handleAddIngredienceToArray = () => {
     if (
@@ -31,7 +35,7 @@ const CreateRecipe = () => {
     }
   };
 
-  const handleSaveRecipe = () => {
+  const handleSaveRecipe = async () => {
     if (
       ingredienceArray.length > 2 &&
       nameInputRef.current?.value &&
@@ -42,7 +46,20 @@ const CreateRecipe = () => {
       secondaryCategorySelectRef.current?.value &&
       recipeTextareaRef.current?.value
     ) {
-      console.log("start saving");
+      //@ts-ignore
+      const res: { errCode: string } = await apiManager.saveRecipes({
+        title: nameInputRef.current.value,
+        price: priceInputRef.current.value,
+        calories: caloriesInputRef.current.value,
+        author: authorInputRef.current.value,
+        mainCategory: mainCategorySelectRef.current.value,
+        secondaryCategory: secondaryCategorySelectRef.current.value,
+        ingredience: ingredienceArray,
+        recipe: recipeTextareaRef.current.value,
+      });
+      if ("errCode" in res && res.errCode === "200") {
+        navigateTo("/Recipes");
+      }
     } else {
       alert("Musíš vše vyplnit");
     }
@@ -81,9 +98,9 @@ const CreateRecipe = () => {
             <option value={""} disabled>
               Vyber hlavní kategorii
             </option>
-            {mealTypesArray.map((item, index) => (
-              <option value={item} key={index}>
-                {item}
+            {mealTypesArray.map(({ mealType, title }, index) => (
+              <option value={mealType} key={index}>
+                {title}
               </option>
             ))}
           </select>
@@ -93,9 +110,9 @@ const CreateRecipe = () => {
             <option value={""} disabled>
               Vyber sekundární kategorii
             </option>
-            {mealTypesArray.map((item, index) => (
-              <option value={item} key={index}>
-                {item}
+            {mealTypesArray.map(({ mealType, title }, index) => (
+              <option value={mealType} key={index}>
+                {title}
               </option>
             ))}
           </select>

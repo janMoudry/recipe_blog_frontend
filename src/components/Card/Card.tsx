@@ -6,15 +6,15 @@ const Card = ({
   title,
   description,
   autor,
-  type,
-  date,
+  category,
+  date = new Date(),
   isSecondary,
 }: CardProps) => {
   return (
     <div className="card_container">
       <h1> {title.toUpperCase()} </h1>
       <h4> {autor} </h4>
-      <h5> "{type}" </h5>
+
       <h5> {description} </h5>
       <h4>
         {date.getDate().toString()}. {date.getMonth().toString()}.{" "}

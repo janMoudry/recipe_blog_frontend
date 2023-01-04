@@ -4,4 +4,5 @@ export interface NavigationCardProps {
   title: string;
   mealType: mealTypes;
   icon: string;
+  onClick: () => void;
 }
